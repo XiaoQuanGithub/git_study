@@ -231,18 +231,18 @@ git push origin master
 #然后push
 #git push -u origin [name]
 
-#下载远程仓库的所有变动
-git fetch [remote]
-#取回远程仓库的变化，并与本地分支合并
-git pull [remote] [branch]
+#增加一个新的远程仓库，并命名
+git remote add [shortname] [url]
 #显示所有远程仓库
 git remote -v
 #显示某个远程仓库的信息
 git remote show [remote]
+#下载远程仓库的所有变动
+git fetch [remote]
+#取回远程仓库的变化，并与本地分支合并
+git pull [remote] [branch]
 #上传本地指定分支到远程仓库
 git push [remote] [branch]
-#增加一个新的远程仓库，并命名
-git remote add [shortname] [url]
 #强行推送当前分支到远程仓库，即使有冲突
 git push [remote] --force
 #推送所有分支到远程仓库
@@ -252,7 +252,15 @@ git push <remote> :<branch/tag-name>
 #上传所有标签
 git push --tags
 
+#修改本地仓库关于远程仓库配置的url信息
+git remote [shortname] set-url [new-url]
 #修改本地仓库关于远程仓库配置的信息，在config文件对应的地方修改
+#未push之前更改提交的注释
+#如果提交了代码到本地，还没push，发现同步时提交的变更内容的注释填写有误
+#查看提交文件，里面包含注释和变更内容
+git commit --amend
+#按v进入编辑模式，更改完成后
+#按esc,:qw! 保存
 
 #标签
 #列出所有本地标签
