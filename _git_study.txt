@@ -192,6 +192,7 @@ git cherry-pick [commit]
 #文件在C:\Users\（自己电脑用户名）\.ssh里面，有公钥和私钥
 #在本地仓库目录下开shell终端
 #两种方式连接远程仓库
+#origin是自己自定义的名字
 #采用ssh连接方式
 #git remote add origin git@github.com:XiaoQuanGithub/repository_study.git
 #采用https连接方式
