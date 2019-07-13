@@ -185,6 +185,7 @@ git cherry-pick [commit]
 #git remote add origin git@github.com:XiaoQuanGithub/repository_study.git
 #采用https连接方式
 #git remote add origin https://github.com/XiaoQuanGithub/repository_study.git
+#注意，origin是名字，你自己可以随便取
 #第一次把本地仓库推送到远程空仓库时
 git push -u origin master
 #之后的本地master分支的最新修改推送到远程仓库
