@@ -1,2 +1,59 @@
-#配置一些让git忽略不追踪的东西
+#添加一些忽略正则让git忽略不追踪的东西
+#*.dump表示忽略所有以.dump结尾的文件
 *.dump
+#node_modules表示忽略该文件夹及文件夹下文件
+node_modules
+#.DS_Store表示忽略该.DS_Store文件夹及文件夹下文件
+.DS_Store
+
+#【例子】
+# 忽略*.o和*.a文件
+# *.[oa]
+# 忽略*.b和*.B文件，my.b除外
+#*.[bB]
+#!my.b
+# 忽略dbg文件和dbg目录
+#dbg
+# 只忽略dbg目录，不忽略dbg文件
+#dbg/
+# 只忽略dbg文件，不忽略dbg目录
+#dbg
+#!dbg/
+# 只忽略当前目录下的dbg文件和目录，子目录的dbg不在忽略范围内
+#/dbg
+# 以'#'开始的行，被视为注释.
+#    * ?：代表任意的一个字符
+#    * ＊：代表任意数目的字符
+#    * {!ab}：必须不是此类型
+#    * {ab,bb,cx}：代表ab,bb,cx中任一类型即可
+#    * [abc]：代表a,b,c中任一字符即可
+#    * [^abc]：代表必须不是a,b,c中任一字符
+
+#添加忽略之后，已经提交到版本库中的文件是无法忽略的。只能clone到本地，删除后，再进行忽略
+#.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的
+#正确的做法是在每个clone下来的仓库中手动设置不要检查特定文件的更改情况
+#git update-index --assume-unchanged PATH    在PATH处输入要忽略的文件
+#另外git还提供了另一种exclude的方式来做同样的事情，不同的是.gitignore这个文件本身会提交到版本库中去。
+#用来保存的是公共的需要排除的文件。而.git/info/exclude这里设置的则是你自己本地需要排除的文件。他不会影响到其他人。
+#也不会提交到版本库中去。
+
+/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
