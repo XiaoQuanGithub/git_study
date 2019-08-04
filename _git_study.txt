@@ -56,8 +56,8 @@ exit
 #配置
 因为git是分布式版本控制系统，所以需要填写用户和邮箱作为一个标识
 下面用了--global这个参数创建了全局的配置，表示本台机器的所有git仓库都能使用该配置
-git config [--global] user.name "Mr.Q"
-git config [--global] user.email "484526977@qq.com"
+git config [--global] user.name "最好是自定义英文名字"
+git config [--global] user.email "自定义邮箱"
 #显示当前的git配置
 git config --list
 #编辑git配置文件(在当前已经创建好的仓库目录下)
