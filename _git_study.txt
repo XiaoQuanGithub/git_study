@@ -1,11 +1,12 @@
 ﻿明确一下，目前所有的版本控制管理系统，只能跟踪文本文件的改动，而例如图片、视频等二进制文件不能跟踪其内容的变化和改变，只知道大小的变化。
-1#win10下打开gitbash终端创建本地的ssh文件(即公钥和私钥);(创建成功生成的密钥文件在C:\Users\自己当前登录win10系统的用户名\.ssh)
+
+#win10下打开gitbash终端创建本地的ssh文件(即公钥和私钥);(创建成功生成的密钥文件在C:\Users\自己当前登录win10系统的用户名\.ssh)
 1.ssh-keygen -t rsa -C "自定义邮箱"
 2.根据提示要求输入ssh自定义密码
-3.windows用户输入ssh-agent -s
-linux用户输入eval"(ssh-agent -s)"
-2(linux用户输入ssh-add文件路径之后和密码，就可以保存起来该ssh密钥文件了;linux用户输入vim ~/.ssh/id_rsa.pub就可以打开钥匙的内容了;ssh -T git@github.com访问github官网)
-3#最常用的步骤及命令
+3.windows用户输入ssh-agent -s;linux用户输入eval"(ssh-agent -s)"
+(linux用户输入ssh-add文件路径之后和密码，就可以保存起来该ssh密钥文件了;linux用户输入vim ~/.ssh/id_rsa.pub就可以打开钥匙的内容了;ssh -T git@github.com访问github官网)
+
+#最常用的步骤及命令
 #前提是本地配好了ssh
 #没建本地仓库，则新建一个
 git init
@@ -38,14 +39,16 @@ git push -u [自己本地配置远程仓库连接的别名] [自己本地仓库�
 git push [自己本地配置远程仓库连接的别名] [自己本地仓库的分支名称]
 #3、在自己的远程仓库平台里的目标仓库里去执行pull request操作
 #4、等待目标仓库的维护者给你合入代码就好了
-4#使用git同时上传到多个远程库的操作方式
+
+#使用git同时上传到多个远程库的操作方式
 #先添加一个本地连接远程仓库的信息
 git remote add 自定义名称 远程仓库链接
 #接着在该自定义名称的信息里继续添加新的连接远程仓库的信息
 git remote set-url --add 自定义名称 远程仓库链接
 #最后本地一次性上传(如果有的远程仓库是第一次新建的，并且允许本地第一次上传全覆盖，强制命令:git push -u 自定义名称 master -f)
 git push 自定义名称 --all
-5#在本地机器搭建好git服务器的前提下（例如在window10环境下安装好copssh，并且相关配置也配置完毕了；假如安装好copssh，发现运行不了，很可能是本次安装设置的用户在电脑上早就存在了，则删了电脑这个已存在的用户，重新安装copssh）
+
+#在本地机器搭建好git服务器的前提下（例如在window10环境下安装好copssh，并且相关配置也配置完毕了；假如安装好copssh，发现运行不了，很可能是本次安装设置的用户在电脑上早就存在了，则删了电脑这个已存在的用户，重新安装copssh）
 #打开gitBash终端输入命令进行操作
 ssh 自己在git服务器里已经添加好的用户名@当前自己作服务器电脑的ipv4地址
 #创建一个名字为自定义仓库名字的文件夹，作为新仓库的根目录，然后进入，初始化得到一个新仓库
@@ -55,7 +58,8 @@ git init --bare
 #退出ssh服务器
 exit
 #至此，我们得到一个在服务器端的仓库地址：自己在git服务器里已经添加好的用户名@当前自己作服务器电脑的ipv4地址:自定义仓库名字
-6#配置
+
+#配置
 因为git是分布式版本控制系统，所以需要填写用户和邮箱作为一个标识
 下面用了--global这个参数创建了全局的配置，表示本台机器的所有git仓库都能使用该配置
 git config [--global] user.name "最好是自定义英文名字"
@@ -64,14 +68,16 @@ git config [--global] user.email "自定义邮箱"
 git config --list
 #编辑git配置文件(在当前已经创建好的仓库目录下)
 git config -e [--global]
-7#创建版本库（即创建本地仓库，英文名repository）
+
+#创建版本库（即创建本地仓库，英文名repository）
 #在当前目录下新建一个git仓库
 git init
 #新建一个目录，将其初始化为git仓库
 git init [project-name]
 #下载一个项目和它的整个代码历史
 git clone [url]
-8#增加/删除/修改文件
+
+#增加/删除/修改文件
 #查看状态
 git status
 #查看变更内容
@@ -91,7 +97,8 @@ git rm [file1] [file2] ...
 git rm --cached [file]
 #改名文件，并且将这个改名放入暂存区
 git mv [file-original] [file-renamed]
-9#撤销
+
+#撤销
 #撤销工作目录中所有未提交文件的修改内容
 git reset --hard HEAD
 #撤销指定的未提交文件的修改内容
@@ -124,7 +131,8 @@ git revert [commit]
 #暂时将未提交的变化移除，稍后再移入
 git stash
 git stash pop
-10#查看信息
+
+#查看信息
 #显示当前分支的版本历史
 git log
 #显示commit历史，以及每次commit发生变更的文件
@@ -162,7 +170,8 @@ git show --name-only [commit]
 git show [commit]:[filename]
 #显示当前分支的最近几次提交
 git reflog
-11#代码提交
+
+#代码提交
 #提交暂存区到仓库
 git commit -m [message]
 #提交暂存区的指定文件到仓库区
@@ -176,7 +185,8 @@ git commit -v
 git commit --amend -m [message]
 #重做上一次commit，并包括指定文件的新变化
 git commit --amend [file1] [file2] ...
-12每次准备提交前，先用git status看下，是不是都已暂存起来了，
+
+每次准备提交前，先用git status看下，是不是都已暂存起来了，
 然后再运行提交命令git commit;这种方式会启动文本编辑器以便输入本次提交的说明。
 默认会启用shell的环境变量$EDITOR所指定的软件，一般都是vim或emacs。
 当然也可以使用git config --global core.editor命令设定你喜欢的编辑软件。
@@ -191,7 +201,8 @@ git commit --amend [file1] [file2] ...
 3.按键盘左上角"Esc"
 4.输入":wq",注意是冒号+wq,按回车键即可
 也可以使用 -m 参数后跟提交说明的方式，在一行命令中提交更新。即：git commit -m "这里是信息"，添加就不会出现提示了
-13#分支
+
+#分支
 #显示所有本地分支
 git branch
 #列出所有远程分支
@@ -221,7 +232,8 @@ git merge [branch]
 git rebase <branch>
 #选择一个commit,合并进当前分支
 git cherry-pick [commit]
-14#远程操作(remote遥远的)
+
+#远程操作(remote遥远的)
 #在连接远程仓库前，现在本地电脑配置ssh密钥文件
 #ssh-keygen -t rsa -C "youremail@example.com"
 #然后一路回车就可以生成
@@ -255,7 +267,8 @@ git push origin master
 #git branch [name]
 #然后push
 #git push -u origin [name]
-15#增加一个新的远程仓库，并命名
+
+#增加一个新的远程仓库，并命名
 git remote add [shortname] [url]
 #显示所有远程仓库
 git remote -v
@@ -275,7 +288,8 @@ git push [remote] --all
 git push <remote> :<branch/tag-name>
 #上传所有标签
 git push --tags
-16#修改本地仓库关于远程仓库配置的url信息
+
+#修改本地仓库关于远程仓库配置的url信息
 git remote [shortname] set-url [new-url]
 #修改本地仓库关于远程仓库配置的信息，在config文件对应的地方修改
 #未push之前更改提交的注释
@@ -284,7 +298,8 @@ git remote [shortname] set-url [new-url]
 git commit --amend
 #按v进入编辑模式，更改完成后
 #按esc,:qw! 保存
-17#标签
+
+#标签
 #列出所有本地标签
 git tag
 #基于最新提交创建标签
@@ -301,5 +316,6 @@ git push [remote] [tag]
 git push [remote] --tags
 #新建一个分支，指向某个tag
 git checkout -b [branch] [tag]
-18#生成一个可供发布的压缩包
+
+#生成一个可供发布的压缩包
 git archive
