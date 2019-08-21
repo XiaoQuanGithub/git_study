@@ -138,13 +138,13 @@ git rm --cached [file]
 #改名文件，并且将这个改名放入暂存区
 git mv [file-original] [file-renamed]
 
-#撤销
+#撤销(有两边符号包含的commit代指某个版本号，使用git log命令可查看版本号信息)
 #撤销工作目录中所有未提交文件的修改内容
 git reset --hard HEAD
 #撤销指定的未提交文件的修改内容
 git checkout HEAD <file>
-#撤销指定的提交
-git revert <commit>
+#用于“反做”某一个版本，以达到撤销该版本的修改的目的。比如，我们commit了三个版本（版本一、版本二、 版本三），突然发现版本二不行（如：有bug），想要撤销版本二，但又不想影响撤销版本三的提交，就可以用 git revert 命令来反做版本二，生成新的版本四，这个版本四里会保留版本三的东西，但撤销了版本二的东西。
+git revert -n <commit>
 #退回到之前1天的版本
 git log --before="1 days"
 #恢复暂存区的指定文件到工作区
