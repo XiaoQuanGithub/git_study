@@ -359,3 +359,5 @@ git checkout -b [branch] [tag]
 
 #生成一个可供发布的压缩包
 git archive
+#显示当前仓库占用大小的命令
+git count-objects -vH
